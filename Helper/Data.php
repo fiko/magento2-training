@@ -1,26 +1,22 @@
 <?php
 
-namespace Fiko\Training\Helper;
+declare(strict_types=1);
 
-use Magento\Store\Model\StoreManagerInterface;
+namespace Fiko\Training\Helper;
 
 class Data
 {
-    const BORIZQY = 'Borizqy';
-
-    /**
-     * @var StoreManagerInterface
-     */
-    public $storeManager;
+    /** @var array */
+    public $data;
 
     /**
      * Constructor
      *
-     * @param StoreManagerInterface $storeManager
+     * @param array $data
      */
-    public function __construct(StoreManagerInterface $storeManager)
+    public function __construct(array $data = [])
     {
-        $this->storeManager = $storeManager;
+        $this->data = $data;
     }
 
     /**
@@ -31,27 +27,6 @@ class Data
      */
     public function getName($name): string
     {
-        return $name;
-    }
-
-    /**
-     * Getting current store Id
-     *
-     * @return void
-     */
-    public function getStoreId()
-    {
-        return $this->storeManager->getStore()->getId();
-    }
-
-    /**
-     * Checking is string parameter borizqy or not?
-     *
-     * @param string $surname
-     * @return boolean
-     */
-    public function isBorizqy($surname)
-    {
-        return ucwords(strtolower($surname)) === self::BORIZQY;
+        return "{$this->data['prefix']} {$name}";
     }
 }
